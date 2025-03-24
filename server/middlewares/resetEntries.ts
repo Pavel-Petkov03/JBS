@@ -30,12 +30,11 @@ function allowedToResetEntries<T extends Array<string>>(secret : string, passedE
             res.status(400).json({
                 "error" : "Not authorised"
             });
-            return
+            return;
         }
         if (!req.body.verifiedEntries) {
             req.body.verifiedEntries = {} as { [K in T[number]]: string };
         }
-        await client.del(`reset:${decoded[uniqueEntry]}`);
         passedEntries.forEach(entry => {
             req.body.verifiedEntries[entry as T[number]] = decoded[entry];
         });

@@ -10,6 +10,7 @@ import logoutCotroller from "../controllers/auth/registrationControllers/logout"
 import { validateUser } from "../middlewares/validateRegisterCredentials";
 import forgottenPasswordController from "../controllers/auth/registrationControllers/forgottenPassword";
 import allowedToResetEntriesBuilder from "../middlewares/resetEntries";
+import generateEmail from "../utils/generateEmail";
 const router = express.Router()
 
 
@@ -20,7 +21,20 @@ router.post("/login", loginController);
 router.post("/register", validateUser , registerCandidate)
 router.post("/logout", logoutCotroller);
 router.post("/forgot-password", passwordResetMiddleware ,forgottenPasswordController);
-router.get("/reset-password");
-router.post("/reset-password");
+router.get("/forgot-password", passwordResetMiddleware, (req, res) => {
+    res.status(200).json({
+        "message" : "Successfully got to the page"
+    });
+});
+router.post("/reset-password", async (req, res) => {
+    const {email} = req.body;
+    // trqbwa da validiram email predi tova(demek da vkaram edin middleware)
+    // trqbva da generiram reset token i da go zashiq v redis
+    // obache me murzi che imam lambda smqtane :(
+    await generateEmail(email, "Reset Password", "<h1>add generation code</h1>");
+    res.status(200).json({
+        "message" : "Successfully generated email"
+    });
+});
 
 export default router
