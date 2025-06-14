@@ -8,7 +8,7 @@ export interface ICompany extends mongoose.Document {
   }
 
 
-// ADMIN CREATES THE COMPANY AND ONLY PUTS NAME AND ONE EPLOYER
+// ADMIN CREATES THE COMPANY AND ONLY PUTS NAME AND ONE EMPLOYER
 // THE EMPLOYER ADDS DATA TO COMPANY
 const companySchema = new mongoose.Schema<ICompany>({
     name: {type : String, required : true, unique : true},

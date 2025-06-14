@@ -9,7 +9,7 @@ import { TokenRequest } from "../../../types/auth/authenticateTokens"
 import { Company } from "../../../models/company"
 import { ErrorResponsePayload } from "../../../types/auth/login"
 
-const registerCandidate = serverErrorHandler(async (req : RegisterCandidateRequest, res : Response) =>  {
+const registerCandidateController = serverErrorHandler(async (req : RegisterCandidateRequest, res : Response) =>  {
     const {password , email , name} = req.body;
     try{
         const user = new User({ 
@@ -35,14 +35,10 @@ const registerCandidate = serverErrorHandler(async (req : RegisterCandidateReque
 
 
 // before that have to validate token
-const registerEmployer = serverErrorHandler(
+const registerEmployerPostController = serverErrorHandler(
     async (req : TokenRequest<["email", "companyName"]> & {body : {password : string, name : string}}, 
         res : Response<ErrorResponsePayload | {message : string}>
     ) => {
-    // 
-    // this endpoint runs when the employer has filled all the data
-    // after employer created from the admin[check admin register manager]
-    // 
 
     const {password, name, verifiedEntries} = req.body;
     const {email, companyName} = verifiedEntries;
@@ -72,7 +68,17 @@ const registerEmployer = serverErrorHandler(
     }
  });
 
+ const registerEmployerGetController = serverErrorHandler(
+    async (req : TokenRequest<["email", "companyName"]> & {body : {password : string, name : string}}, 
+        res : Response<ErrorResponsePayload | {message : string}>
+    ) => {
+        res.status(200).json({
+            "message" : "Successfully get"
+        });
+ });
+
 export {
-    registerEmployer,
-    registerCandidate
+    registerEmployerPostController,
+    registerCandidateController,
+    registerEmployerGetController
 }

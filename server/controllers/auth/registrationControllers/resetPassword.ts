@@ -17,7 +17,7 @@ async function resetController(req : Request, res : Response) {
             replacers
         );
 
-    client.set(`reset:${email}`, token); 
+    await client.set(`reset:${email}`, token); 
     res.status(200).json({
         "message" : "Successfully generated email"
     });
