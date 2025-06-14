@@ -25,4 +25,4 @@ async function authenticateToken(req : AuthRequest, res : Response, next : NextF
     next();
 }
 
-export default authenticateToken
+export default authenticateToken;

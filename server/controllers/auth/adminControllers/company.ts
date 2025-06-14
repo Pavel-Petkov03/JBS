@@ -33,7 +33,7 @@ const createCompany = serverErrorHandler(async (req : Request, res : Response) =
     const currentCompany = new Company({
         name : companyName,
         employees  : [employer.id]
-    })
+    });
     await currentCompany.save();
     res.status(200).json({
         "message" : "Sucessfully created company",

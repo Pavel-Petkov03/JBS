@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { Response } from "express";
 const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET as string;
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET as string;
+const JWT_RESET_SECRET = process.env.JWT_RESET_SECRET as string;
 import client from "../config/redis";
 function generateAccessToken(userId: string) {
     return jwt.sign(
@@ -16,6 +17,14 @@ function generateRefreshToken(userId: string) {
         { id: userId },
         JWT_REFRESH_SECRET,
         { expiresIn: "7d" }
+    );
+}
+
+function generateResetToken(email : string){
+    return jwt.sign(
+        { email: email },
+        JWT_RESET_SECRET,
+        { expiresIn: "5M" }
     );
 }
 
@@ -50,5 +59,6 @@ export {
     generateAccessToken,
     generateRefreshToken,
     setRefreshToken,
-    deleteRefreshToken
+    deleteRefreshToken, 
+    generateResetToken
 }

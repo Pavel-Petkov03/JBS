@@ -1,26 +1,20 @@
 import serverErrorHandler from "../../../utils/serverErrorHandler";
 import {Request, Response, NextFunction} from "express"
-import { Company } from "../../../models/company";
 import jwt from "jsonwebtoken"
 import { JWT_MANAGER_EMAIL_SECRET } from "../../../types/auth/secrets";
 import generateEmail from "../../../utils/generateEmail";
 import { User } from "../../../models/user";
 import { ErrorResponsePayload } from "../../../types/auth/login";
 
+
+// this endpoint sends email to manager employer
 const registerManager = serverErrorHandler(async (req : Request, res : Response<ErrorResponsePayload | {message : string}>) => {
-    // todo create htmlk for email and add html to string implementation
+    // todo create html for email and add html to string implementation
     const {email, companyName} = req.body;
-    const currentCompany = await Company.findOne({name : companyName});
     const userWithMatchingEmail = await User.findOne({email : email});
     if(userWithMatchingEmail){
         res.status(400).json({
             "error" : "There is user with such email"
-        });
-        return;
-    }
-    if(!currentCompany){
-        res.status(404).json({
-            "error" : "No company with such name"
         });
         return;
     }

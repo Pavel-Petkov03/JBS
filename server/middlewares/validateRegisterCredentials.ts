@@ -20,8 +20,5 @@ export const validateUser = [
         .withMessage('Password must contain at least one uppercase letter')
         .matches(/[0-9]/)
         .withMessage('Password must contain at least one number'),
-    body("role")
-        .matches("Admin|Candidate|Employer")
-        .withMessage("Rle must be Admin or Candidate or Employee"),
     validator
 ];

@@ -1,6 +1,6 @@
 
 import bcrypt from "bcrypt"
-import {Request, Response} from "express"
+import {Response} from "express"
 import { Employer, User } from "../../../models/user"
 import serverErrorHandler from "../../../utils/serverErrorHandler"
 import {generateAccessToken, setRefreshToken } from "../../../utils/generateTokens"
@@ -34,7 +34,7 @@ const registerCandidate = serverErrorHandler(async (req : RegisterCandidateReque
 
 
 
-// before that have to validate reset token
+// before that have to validate token
 const registerEmployer = serverErrorHandler(
     async (req : TokenRequest<["email", "companyName"]> & {body : {password : string, name : string}}, 
         res : Response<ErrorResponsePayload | {message : string}>
@@ -70,8 +70,7 @@ const registerEmployer = serverErrorHandler(
             "error" : "There is employer with such email"
         });
     }
- })
-
+ });
 
 export {
     registerEmployer,

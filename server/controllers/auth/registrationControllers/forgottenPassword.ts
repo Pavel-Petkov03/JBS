@@ -4,7 +4,8 @@ import { User } from "../../../models/user";
 import bcrypt from "bcrypt"
 import { Response } from "express";
 import client from "../../../config/redis";
-const forgottenPassword = serverErrorHandler(
+
+const forgottenPasswordPostConstroller = serverErrorHandler(
     async (req : TokenRequest<["email"]> & {body : {password : string}}, 
         res : Response) => {
     const {password, verifiedEntries} = req.body;
@@ -26,6 +27,15 @@ const forgottenPassword = serverErrorHandler(
     return;
 });
 
+const forgottenPasswordGetController = serverErrorHandler(async (req : TokenRequest<['email']>, res : Response) => {
+    res.status(200).json({
+        "message" : "Successfully got to the page"
+    });
+})
 
-export default forgottenPassword
+
+export {
+     forgottenPasswordPostConstroller,
+     forgottenPasswordGetController
+}
 
