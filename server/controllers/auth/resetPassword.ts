@@ -1,8 +1,8 @@
-import { generateResetToken } from "../../../utils/generateTokens";
+import { generateResetToken } from "../../utils/generateTokens";
 import { Request, Response } from "express";
-import generateEmail from "../../../utils/generateEmail";
-import client from "../../../config/redis";
-import htmlString from "../../../utils/templates/resetPasswrd";
+import generateEmail from "../../utils/generateEmail";
+import client from "../../config/redis";
+import htmlString from "../../utils/templates/resetPasswrd";
 
 async function resetController(req : Request, res : Response) {
     const {email} = req.body;

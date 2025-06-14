@@ -1,5 +1,6 @@
 import express from "express"
 import hasRoles from "../middlewares/hasRole";
+import UserRole from "../types/auth/roleTypes";
 
 const router = express.Router()
 
@@ -7,10 +8,10 @@ const router = express.Router()
 router.post("/");
 
 router.get("/:jobId");
-router.put("/:jobId", hasRoles(["Employer"]));
-router.delete("/:jobId", hasRoles(["Employer"]));
+router.put("/:jobId", hasRoles([UserRole.Employer, UserRole.Admin]));
+router.delete("/:jobId", hasRoles([UserRole.Employer, UserRole.Admin]));
 
-router.get("/:jobId/applications");
-router.post("/:jobId/applications");
+router.get("/:jobId/applications", hasRoles([UserRole.Employer, UserRole.Admin]));
+router.post("/:jobId/applications", hasRoles([UserRole.Employer, UserRole.Admin]));
 
 export default router

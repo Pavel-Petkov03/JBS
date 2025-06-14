@@ -8,6 +8,7 @@ export interface IApplication extends Document {
   status: "Pending" | "Reviewed" | "Interview" | "Rejected" | "Accepted";
   submissionDate: Date;
   interviewDate?: Date;
+  resumePublicId : string;
 }
 
 const ApplicationSchema = new Schema<IApplication>(
@@ -15,6 +16,7 @@ const ApplicationSchema = new Schema<IApplication>(
     candidate: { type: Schema.Types.ObjectId, ref: "Candidate", required: true },
     job: { type: Schema.Types.ObjectId, ref: "Job", required: true },
     resumeUrl: { type: String, required: true },
+    resumePublicId : {type : String, required : true},
     status: {
       type: String,
       enum: ["Pending", "Reviewed", "Interview", "Rejected", "Accepted"],

@@ -5,6 +5,7 @@ export interface ICompany extends mongoose.Document {
     location: string;
     logoUrl: string;
     employees: mongoose.Types.ObjectId[];
+    logoPublicId : string
   }
 
 
@@ -15,6 +16,7 @@ const companySchema = new mongoose.Schema<ICompany>({
     description: {type : String, required : false},
     location: {type : String, required : false},
     logoUrl: {type : String, required : false},
+    logoPublicId : { type: String, required: true },
     employees: [{ type: mongoose.Schema.Types.ObjectId, ref: "Employer"}]
 });
 

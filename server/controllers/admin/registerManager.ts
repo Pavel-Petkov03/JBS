@@ -1,10 +1,10 @@
-import serverErrorHandler from "../../../utils/serverErrorHandler";
+import serverErrorHandler from "../../utils/serverErrorHandler";
 import {Request, Response, NextFunction} from "express"
 import jwt from "jsonwebtoken"
-import { JWT_MANAGER_EMAIL_SECRET } from "../../../types/auth/secrets";
-import generateEmail from "../../../utils/generateEmail";
-import { User } from "../../../models/user";
-import { ErrorResponsePayload } from "../../../types/auth/login";
+import { JWT_MANAGER_EMAIL_SECRET } from "../../types/auth/secrets";
+import generateEmail from "../../utils/generateEmail";
+import { User } from "../../models/user";
+import { ErrorResponsePayload } from "../../types/auth/login";
 
 
 // this endpoint sends email to manager employer

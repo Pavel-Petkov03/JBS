@@ -1,14 +1,14 @@
 import express  from "express"
 
-import loginController from "../controllers/auth/registrationControllers/login";
-import {registerCandidateController, registerEmployerGetController, registerEmployerPostController} from "../controllers/auth/registrationControllers/register"
-import refreshTokenCotroller from "../controllers/auth/registrationControllers/refreshToken";
-import logoutCotroller from "../controllers/auth/registrationControllers/logout";
+import loginController from "../controllers/auth/login";
+import {registerCandidateController, registerEmployerGetController, registerEmployerPostController} from "../controllers/auth/register"
+import refreshTokenCotroller from "../controllers/auth/refreshToken";
+import logoutCotroller from "../controllers/auth/logout";
 
 import { validateUser } from "../middlewares/validateRegisterCredentials";
-import {forgottenPasswordGetController, forgottenPasswordPostConstroller} from "../controllers/auth/registrationControllers/forgottenPassword";
+import {forgottenPasswordGetController, forgottenPasswordPostConstroller} from "../controllers/auth/forgottenPassword";
 import  generateTokenGateDecorator from "../middlewares/resetEntries";
-import resetController from "../controllers/auth/registrationControllers/resetPassword";
+import resetController from "../controllers/auth/resetPassword";
 
 import { JWT_RESET_SECRET , JWT_HIRE_SECRET} from "../types/auth/secrets";
 

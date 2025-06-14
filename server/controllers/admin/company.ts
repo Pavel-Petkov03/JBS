@@ -1,9 +1,9 @@
-import serverErrorHandler from "../../../utils/serverErrorHandler";
+import serverErrorHandler from "../../utils/serverErrorHandler";
 import { Request, Response } from "express";
-import { Company } from "../../../models/company";
+import { Company } from "../../models/company";
 import { body } from 'express-validator';
-import validator from "../../../middlewares/expressValidatorValidate";
-import { Employer} from "../../../models/user";
+import validator from "../../middlewares/expressValidatorValidate";
+import { Employer} from "../../models/user";
 
 const validateCompanyEntries = [
     body('name')
