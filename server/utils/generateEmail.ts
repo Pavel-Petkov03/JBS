@@ -4,6 +4,8 @@ async function generateEmail(email : string, subject : string, html : string, re
     let currentHtml;
     if (replaces){
         currentHtml = html.replace(/{{(.*?)}}/g, (_, key) => replaces.get(key) || "");
+    }else{
+        currentHtml = html;
     }
     await transporter.sendMail({
         to: email,
