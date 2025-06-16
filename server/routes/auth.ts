@@ -10,7 +10,7 @@ import {forgottenPasswordGetController, forgottenPasswordPostConstroller} from "
 import  generateTokenGateDecorator from "../middlewares/resetEntries";
 import resetController from "../controllers/auth/resetPassword";
 
-import { JWT_RESET_SECRET , JWT_HIRE_SECRET} from "../types/auth/secrets";
+import { JWT_RESET_SECRET , JWT_HIRE_SECRET} from "../types/secrets";
 
 const router = express.Router();
 

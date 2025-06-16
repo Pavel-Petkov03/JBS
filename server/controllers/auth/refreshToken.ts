@@ -2,7 +2,7 @@ import serverErrorHandler from "../../utils/serverErrorHandler";
 import jwt, { JwtPayload } from "jsonwebtoken"
 import { Request, Response } from "express";
 import { generateAccessToken, setRefreshToken } from "../../utils/generateTokens";
-import { JWT_REFRESH_SECRET } from "../../types/auth/secrets";
+import { JWT_REFRESH_SECRET } from "../../types/secrets";
 import client from "../../config/redis"
 import { ErrorResponsePayload, LoginResponse } from "../../types/auth/login";
 

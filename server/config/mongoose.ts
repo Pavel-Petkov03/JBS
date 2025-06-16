@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MONGOOSE_URL } from "../types/auth/secrets";
+import { MONGOOSE_URL } from "../types/secrets";
 mongoose
     .connect(MONGOOSE_URL)
     .then( () => {

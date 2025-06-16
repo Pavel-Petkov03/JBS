@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken"
 import serverErrorHandler from "../../utils/serverErrorHandler";
-import { JWT_REFRESH_SECRET } from "../../types/auth/secrets";
+import { JWT_REFRESH_SECRET } from "../../types/secrets";
 import { deleteRefreshToken } from "../../utils/generateTokens";
 import { ErrorResponsePayload } from "../../types/auth/login";
 const logout = serverErrorHandler(async (req : Request, res : Response<{message : string} | ErrorResponsePayload>)=> {

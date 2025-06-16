@@ -4,7 +4,6 @@ export interface IApplication extends Document {
   candidate: mongoose.Types.ObjectId;
   job: mongoose.Types.ObjectId;
   resumeUrl: string;
-  motivationalLetter?: string;
   status: "Pending" | "Reviewed" | "Interview" | "Rejected" | "Accepted";
   submissionDate: Date;
   interviewDate?: Date;
