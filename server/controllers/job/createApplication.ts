@@ -7,24 +7,29 @@ import { FileUploadRequest } from '../../types/fileRequest';
 
 export const createApplication = async (req: FileUploadRequest , res: Response) => {
     const { jobId } = req.params;
-
+    if(!req.file){
+        res.status(404).json({ 
+        error: 'Image cannot be created' 
+      });
+      return;
+    }
     const job = await JobModel.findById(jobId);
     if (!job || !req.user) {
-      return res.status(404).json({ 
-        success: false,
+      res.status(404).json({ 
         error: 'Job not found' 
       });
+      return;
     }
     const existingApp = await ApplicationModel.findOne({ 
       job: jobId, 
       candidate: req.user._id
     });
     if (existingApp) {
-      return res.status(409).json({
-        success: false,
+      res.status(409).json({
         error: 'Already applied to this job',
         applicationId: existingApp._id
       });
+      return;
     }
 
     const uploadResult = await uploadResume(req.file.buffer);
@@ -37,14 +42,5 @@ export const createApplication = async (req: FileUploadRequest , res: Response) 
       status: 'Pending'
     });
 
-    return res.status(201).json({
-      success: true,
-      data: {
-        id: application._id,
-        job: application.job,
-        status: application.status,
-        resumeUrl: application.resumeUrl,
-        publicId: application.resumePublicId
-      }
-    });
+    res.status(201).json(application);
 };

@@ -6,7 +6,7 @@ router.get("/");
 router.post("/");
 
 router.get("/:companyId");
-router.post("/:companyId");
+router.delete("/:companyId");
 router.put("/:companyId");
 
 router.get("/:companyId/jobs");

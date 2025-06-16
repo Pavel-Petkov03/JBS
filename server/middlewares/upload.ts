@@ -27,14 +27,14 @@ const resumeFileFilter = (
   }
 };
 
-export const uploadResume = multer({
+export const uploadResumeMiddleware = multer({
   storage,
   fileFilter: resumeFileFilter,
   limits: { fileSize: 10 * 1024 * 1024 }
 }).single('resume');
 
 
-export const uploadImage = multer({
+export const uploadImageMiddleware = multer({
   storage,
   fileFilter: imageFileFilter,
   limits: { fileSize: 5 * 1024 * 1024 }

@@ -11,7 +11,7 @@ export interface ICompany extends mongoose.Document {
 
 // ADMIN CREATES THE COMPANY AND ONLY PUTS NAME AND ONE EMPLOYER
 // THE EMPLOYER ADDS DATA TO COMPANY
-const companySchema = new mongoose.Schema<ICompany>({
+const companyModel = new mongoose.Schema<ICompany>({
     name: {type : String, required : true, unique : true},
     description: {type : String, required : false},
     location: {type : String, required : false},
@@ -20,8 +20,8 @@ const companySchema = new mongoose.Schema<ICompany>({
     employees: [{ type: mongoose.Schema.Types.ObjectId, ref: "Employer"}]
 });
 
-companySchema.path("employees").validate((employees: mongoose.Types.ObjectId[]) => {
+companyModel.path("employees").validate((employees: mongoose.Types.ObjectId[]) => {
   return employees.length > 0;
 }, "A company must have at least one employer.");
 
-export const Company = mongoose.model<ICompany>("Company", companySchema);
+export const CompanyModel = mongoose.model<ICompany>("Company", companyModel);

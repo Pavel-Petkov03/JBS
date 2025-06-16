@@ -1,6 +1,6 @@
 import serverErrorHandler from "../../utils/serverErrorHandler";
 import { Request, Response } from "express";
-import { Company } from "../../models/company";
+import { CompanyModel } from "../../models/company";
 import { body } from 'express-validator';
 import validator from "../../middlewares/expressValidatorValidate";
 import { Employer} from "../../models/user";
@@ -30,7 +30,7 @@ const createCompany = serverErrorHandler(async (req : Request, res : Response) =
         });
         return;
     }
-    const currentCompany = new Company({
+    const currentCompany = new CompanyModel({
         name : companyName,
         employees  : [employer.id]
     });

@@ -3,13 +3,13 @@ import {ApplicationModel} from '../../models/application';
 import { AuthRequest } from '../../types/auth/authenticateTokens';
 import { cloudinary } from '../../config/cloudinary';
 export const deleteApplication = async (req: AuthRequest, res: Response) => {
-    const { id } = req.params;
-    const query = { _id: id };
+    const { applicationId } = req.params;
 
-    const deleted = await ApplicationModel.findOneAndDelete(query);
+    const deleted = await ApplicationModel.findOneAndDelete({ _id: applicationId , candidate : req.user?.id});
 
     if (!deleted) {
-        return res.status(404).json({ message: 'Application not found' });
+        res.status(404).json({ message: 'Application not found' });
+        return
     }
 
     if (deleted.resumePublicId) {
