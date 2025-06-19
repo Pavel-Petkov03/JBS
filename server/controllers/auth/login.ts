@@ -24,7 +24,8 @@ const login = serverErrorHandler(async (req : LoginRequest, res : LoginResponse)
     await setRefreshToken(res, user.id);
     res.json({
         accessToken,
-        message: "Successfully logged in"
+        message: "Successfully logged in",
+        user
     });
     return;
 })

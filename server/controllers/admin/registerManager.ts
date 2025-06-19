@@ -9,8 +9,6 @@ import { ErrorResponsePayload } from "../../types/auth/login";
 
 // this endpoint sends email to manager employer
 const registerManager = serverErrorHandler(async (req : Request, res : Response<ErrorResponsePayload | {message : string}>) => {
-    // todo create html for email and add html to string implementation
-    //todo
     const {email, companyName} = req.body;
     const userWithMatchingEmail = await User.findOne({email : email});
     if(userWithMatchingEmail){

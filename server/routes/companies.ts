@@ -1,14 +1,11 @@
 import express from "express"
+import { getAllCompanies } from "../controllers/company/getAllCompanies";
+import { getCompany } from "../controllers/company/getCompany";
 
 const router = express.Router()
 
-router.get("/");
-router.post("/");
-
-router.get("/:companyId");
-router.delete("/:companyId");
-router.put("/:companyId");
-
+router.get("/", getAllCompanies);
+router.get("/:companyId", getCompany);
 router.get("/:companyId/jobs");
 
 export default router

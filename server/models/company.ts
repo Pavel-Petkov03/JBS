@@ -16,7 +16,7 @@ const companyModel = new mongoose.Schema<ICompany>({
     description: {type : String, required : false},
     location: {type : String, required : false},
     logoUrl: {type : String, required : false},
-    logoPublicId : { type: String, required: true },
+    logoPublicId : { type: String, required: false },
     employees: [{ type: mongoose.Schema.Types.ObjectId, ref: "Employer"}]
 });
 

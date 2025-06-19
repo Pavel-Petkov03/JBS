@@ -25,7 +25,7 @@ export const createApplication = async (req: FileUploadRequest , res: Response) 
       candidate: req.user._id
     });
     if (existingApp) {
-      res.status(409).json({
+      res.status(404).json({
         error: 'Already applied to this job',
         applicationId: existingApp._id
       });

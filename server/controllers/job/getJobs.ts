@@ -41,15 +41,5 @@ export const getAllJobs = async (req: Request, res: Response) => {
 
     const total = await JobModel.countDocuments(filters);
 
-    res.status(200).json({
-        success: true,
-        count: jobs.length,
-        data: jobs,
-        pagination: {
-            page,
-            limit,
-            total,
-            pages: Math.ceil(total / limit)
-        }
-    });
+    res.status(200).json({jobs, total});
 }

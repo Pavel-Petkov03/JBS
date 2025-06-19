@@ -7,8 +7,8 @@ export const getAllApplications = async (req: Request, res: Response) => {
     if (req.query.status) {
         filters.status = req.query.status;
     }
-    if (req.query.jobId) {
-        filters.job = req.query.jobId;
+    if (req.params.jobId) {
+        filters.job = req.params.jobId;
     }
 
     const applications = await ApplicationModel.find(filters)
@@ -23,5 +23,5 @@ export const getAllApplications = async (req: Request, res: Response) => {
         })
         .sort('-submissionDate');
 
-    res.json({ applications });
+    res.status(200).json({ applications });
 };
